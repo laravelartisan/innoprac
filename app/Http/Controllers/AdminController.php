@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 class AdminController extends Controller {
 
     public function index() {
+
+
         $data['tasks'] = [
                 [
                         'name' => 'Design New Dashboard',
@@ -35,6 +37,7 @@ class AdminController extends Controller {
                         'color' => 'success'
                 ]
         ];
+            return $data;
         return view('test')->with($data);
     }
 

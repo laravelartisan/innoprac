@@ -21,6 +21,34 @@ Route::get('/registered', function () {
 Route::get('/logged', function () {
     return view('logged');
 });
+
+Route::get('/roles', function () {
+     //Create user if needed
+     /*App\User::create([
+     'name' => 'Sohel Amin',
+     'email' => 'sohelamincse@gmail.com',
+     'password' => bcrypt('123456'),
+     ]);*/
+
+
+    $user = App\User::first();
+
+    // Create roles
+    $role = new Appzcoder\LaravelRoles\Models\Role;
+    $role->name = 'manager';
+    $role->save();
+
+
+    // Assign and remove role from user
+    $role = Appzcoder\LaravelRoles\Models\Role::whereName('admin')->first();
+    $user->assignRole($role);
+    //$user->removeRole(2);
+
+
+    return $user->roles;
+});
+
+Route::get('/admin', ['middleware' => 'role:admin', 'uses' => 'AdminController@index']);
 /*
 Route::get('admin', function () {
     return view('dashboard');
