@@ -48,7 +48,7 @@ Route::get('/roles', function () {
     return $user->roles;
 });
 
-Route::get('/admin', ['middleware' => 'role:admin', 'uses' => 'AdminController@index']);
+Route::get('admin', ['middleware' => 'role:admin', 'uses' => 'AdminController@index']);
 /*
 Route::get('admin', function () {
     return view('dashboard');
@@ -74,7 +74,7 @@ Route::post('/moveimage', array('as' => 'move_image',
     'uses' => 'ImageController@postMove'));
 
 //---------------------
-Route::get('admin', 'AdminController@index');
+//Route::get('admin', 'AdminController@index');
 // Authentication routes...
 Route::get('auth/login', 'Auth\AuthController@getLogin');
 Route::post('auth/login', 'Auth\AuthController@postLogin');
